@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="depositSlip" type="DepositSlip"/>
+    <xs:complexType name="DepositSlip">
+        <xs:sequence>
+            <xs:element name="deptor" type="xs:string"/>
+            <xs:element name="receiver" type="xs:string"/>
+            <xs:element name="purposeOfPayment" type="xs:string"/>
+            <xs:element name="currencyDate" type="xs:date"/>
+            <xs:element name="depositSlipDate" type="xs:date"/>
+            <xs:element name="billOfDeptor" type="xs:string"/>
+            <xs:element name="modelAssignment" type="xs:int"/>
+            <xs:element name="referenceNumberAssignment" type="xs:string"/>
+            <xs:element name="billOfReceiver" type="xs:string"/>
+            <xs:element name="modelApproval" type="xs:int"/>
+            <xs:element name="referenceNumberApproval" type="xs:string"/>
+            <xs:element name="amount" type="xs:double"/>
+            <xs:element name="codeOfCurrency" type="xs:string"/>
+            <xs:element name="urgently" type="xs:boolean"/>
+            <xs:element name="direction" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+       
+</xs:schema>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<faktura>
+    <zaglavljeFakture>
+        <nazivDobavljaca>Dobavljac 222</nazivDobavljaca>
+        <adresaDobavljaca>adresa dobavljaca 111</adresaDobavljaca>
+        <PIBDobavljaca>14785236987</PIBDobavljaca>
+        <nazivKupca>Kupac 123</nazivKupca>
+        <adresaKupca>adresa kupca 123</adresaKupca>
+        <PIBKupca>12365478965</PIBKupca>
+        <brojRacuna>147852</brojRacuna>
+        <datumRacuna>2011-02-10</datumRacuna>
+        <vrednostRobe>12.24</vrednostRobe>
+        <vrednostUsluga>12.24</vrednostUsluga>
+        <ukupnoRobaIUsluge>12.24</ukupnoRobaIUsluge>
+        <ukupanRabat>12.24</ukupanRabat>
+        <ukupanPorez>12.24</ukupanPorez>
+        <oznakaValute>rsd</oznakaValute>
+        <iznosZaUplatu>12.24</iznosZaUplatu>
+        <uplataNaRacun>181818181818181818</uplataNaRacun>
+        <datumValute>2011-02-10</datumValute>
+    </zaglavljeFakture>
+    <stavkaFakture>
+        <redniBroj>123</redniBroj>
+        <nazivRobeIliUsluge>roba1</nazivRobeIliUsluge>
+        <kolicina>12.24</kolicina>
+        <jedinicaMere>kg</jedinicaMere>
+        <jedinicnaCena>12.24</jedinicnaCena>
+        <vrednost>12.24</vrednost>
+        <procenatRabata>12.24</procenatRabata>
+        <iznosRabata>12.24</iznosRabata>
+        <umanjenoZaRabat>12.24</umanjenoZaRabat>
+        <ukupanPorez>12.24</ukupanPorez>
+    </stavkaFakture>
+    <stavkaFakture>
+        <redniBroj>258</redniBroj>
+        <nazivRobeIliUsluge>roba2</nazivRobeIliUsluge>
+        <kolicina>13.24</kolicina>
+        <jedinicaMere>kg</jedinicaMere>
+        <jedinicnaCena>125.36</jedinicnaCena>
+        <vrednost>26.86</vrednost>
+        <procenatRabata>888.24</procenatRabata>
+        <iznosRabata>369.24</iznosRabata>
+        <umanjenoZaRabat>52.86</umanjenoZaRabat>
+        <ukupanPorez>125.60</ukupanPorez>
+    </stavkaFakture>
+</faktura>

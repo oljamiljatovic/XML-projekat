@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<depositSlip  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="depositSlip.xsd">
+    
+    <id>5244</id>
+    <deptor>Olja Miljatovic</deptor>
+    <receiver>Vladimir Stanojevic</receiver>
+    <purposeOfPayment>Uplata na racun</purposeOfPayment>
+    <currencyDate>2002-09-24</currencyDate>
+    <depositSlipDate>2002-09-24</depositSlipDate>
+    <billOfDeptor>125896325475821458</billOfDeptor>
+    <modelAssignment>12566</modelAssignment>
+    <referenceNumberAssignment>12589632547582145858</referenceNumberAssignment>
+    <billOfReceiver>125896325475821458</billOfReceiver>
+    <modelApproval>30</modelApproval>
+    <referenceNumberApproval>12589632547582145852</referenceNumberApproval>
+    <amount>1256.36</amount>
+    <codeOfCurrency>rsd</codeOfCurrency>
+    <urgently>true</urgently>
+    <direction>true</direction>
+  
+</depositSlip>

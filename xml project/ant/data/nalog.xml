@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nalog  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="nalog.xsd">
+    <idPoruke>poruka broj 1</idPoruke> 
+    <duznik>Duznik 1</duznik>
+    <svrhaPlacanja>placanje 1</svrhaPlacanja>
+    <primalac>Primalac 1</primalac>
+    <datumNaloga>2002-09-24</datumNaloga>
+    <datumValute>2002-09-24</datumValute>
+    <racunDuznika>181818181818181818</racunDuznika>
+    <modelZaduzenja>97</modelZaduzenja>
+    <pozivNaBrojZaduzenja>20202020202020202020</pozivNaBrojZaduzenja>
+    <racunPrimaoca>771812281818181228</racunPrimaoca>
+    <modelOdobrenja>97</modelOdobrenja>
+    <pozivNaBrojOdobrenja>45454545454545454522</pozivNaBrojOdobrenja>
+    <iznos>17.2</iznos>
+    <oznakaValute>rsd</oznakaValute>
+    <hitno>true</hitno>
+    
+</nalog>

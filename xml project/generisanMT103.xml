@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mt103>
+    <idPoruke>poruka broj 1</idPoruke>
+    <swiftKodBankeDuznika>88888888</swiftKodBankeDuznika>
+    <obracunskiRacunBankeDuznika>181818181818181818</obracunskiRacunBankeDuznika>
+    <swiftKodBankePoverioca>80808080</swiftKodBankePoverioca>
+    <obracunskiRacunBankePoverioca>818181818181818181</obracunskiRacunBankePoverioca>
+    <duznik>duznik broj 1</duznik>
+    <svrhaPlacanja>svrha placanja broj 1</svrhaPlacanja>
+    <primalac>primalac broj 1</primalac>
+    <datumNaloga>2011-02-10</datumNaloga>
+    <datumValute>2011-02-10</datumValute>
+    <racunDuznika>181818181818181818</racunDuznika>
+    <modelZaduzenja>97</modelZaduzenja>
+    <pozivNaBrojZaduzenja>20202020202020202020</pozivNaBrojZaduzenja>
+    <racunPoverioca>181818181818181818</racunPoverioca>
+    <modelOdobrenja>97</modelOdobrenja>
+    <pozivNaBrojOdobrenja>22202020202120202020</pozivNaBrojOdobrenja>
+    <iznos>122.13</iznos>
+    <sifraValute>rsd</sifraValute>
+</mt103>

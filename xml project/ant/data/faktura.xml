@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faktura  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="faktura.xsd">
+    
+    <zaglavljeFakture>
+        <nazivDobavljaca>Dobavljac1</nazivDobavljaca>
+        <adresaDobavljaca>Adresa dobavljaca 1</adresaDobavljaca>
+        <PIBDobavljaca>12345678987</PIBDobavljaca>
+        <nazivKupca>Kupac1</nazivKupca>
+        <adresaKupca>Adresa kupca1</adresaKupca>
+        <PIBKupca>78945612398</PIBKupca>
+        <brojRacuna>652124</brojRacuna>
+        <datumRacuna>2002-09-24</datumRacuna>
+        <vrednostRobe>12.16</vrednostRobe>
+        <vrednostUsluga>126.25</vrednostUsluga>
+        <ukupnoRobaIUsluge>138.41</ukupnoRobaIUsluge>
+        <ukupanRabat>12.36</ukupanRabat>
+        <ukupanPorez>14.23</ukupanPorez>
+        <oznakaValute>rsd</oznakaValute>
+        <iznosZaUplatu>200</iznosZaUplatu>
+        <uplataNaRacun>123456785212365478</uplataNaRacun>
+        <datumValute>2002-09-24</datumValute>
+    </zaglavljeFakture>
+    
+    <stavkaFakture>
+        <redniBroj>111</redniBroj>
+        <nazivRobeIliUsluge>Roba 1</nazivRobeIliUsluge>
+        <kolicina>17</kolicina>
+        <jedinicaMere>kg</jedinicaMere>
+        <jedinicnaCena>12.3</jedinicnaCena>
+        <vrednost>24.6</vrednost>
+        <procenatRabata>1.2</procenatRabata>
+        <iznosRabata>2.4</iznosRabata>
+        <umanjenoZaRabat>1.2</umanjenoZaRabat>
+        <ukupanPorez>4.4</ukupanPorez>
+    </stavkaFakture>
+    
+</faktura>
