@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mt103  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="mt103.xsd">
+    <idPoruke>poruka broj 1</idPoruke> 
+    <swiftKodBankeDuznika>ABCDRS23</swiftKodBankeDuznika>
+    <obracunskiRacunBankeDuznika>181818181818181818</obracunskiRacunBankeDuznika>
+    <swiftKodBankePoverioca>DDDDRS23</swiftKodBankePoverioca>
+    <obracunskiRacunBankePoverioca>181818181818181818</obracunskiRacunBankePoverioca>
+    <duznik>duznik 1</duznik>
+    <svrhaPlacanja>svrha placanja 1</svrhaPlacanja>
+    <primalac>primalac 1 </primalac>
+    <datumNaloga>2002-09-24</datumNaloga>
+    <datumValute>2002-09-24</datumValute>
+    <racunDuznika>818181818181818181</racunDuznika>
+    <modelZaduzenja>97</modelZaduzenja>
+    <pozivNaBrojZaduzenja>20202020202020202020</pozivNaBrojZaduzenja>
+    <racunPoverioca>818181818181818181</racunPoverioca>
+    <modelOdobrenja>97</modelOdobrenja>
+    <pozivNaBrojOdobrenja>22202020202020202022</pozivNaBrojOdobrenja>
+    <iznos>125.30</iznos>
+    <sifraValute>rsd</sifraValute>
+</mt103>
+

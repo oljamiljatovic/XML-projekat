@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mt102  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="mt102.xsd">
+    
+    <zaglavljeMT102>
+        <idPoruke>poruka broj 1</idPoruke>
+        <swiftKodBankeDuznika>12345678</swiftKodBankeDuznika>
+        <obracunskiRacunBankeDuznika>181818181818181818</obracunskiRacunBankeDuznika>
+        <swiftKodBankePoverioca>12345678</swiftKodBankePoverioca>
+        <obracunskiRacunBankePoverioca>181818181818181818</obracunskiRacunBankePoverioca> 
+        <ukupanIznos>125.36</ukupanIznos>
+        <sifraValute>rsd</sifraValute>
+        <datumValute>2002-09-24</datumValute>
+        <datum>2002-09-24</datum>
+    </zaglavljeMT102>
+    
+    <pojedinacnoPlacanjeMT102>
+        <idNalogaZaPlacanje>nalog broj 1</idNalogaZaPlacanje>
+        <duznik>duznik 1</duznik>
+        <svrhaPlacanja>svrha placanja 1</svrhaPlacanja>
+        <primalac>primalac 1</primalac>
+        <datumNaloga>2008-02-02</datumNaloga>
+        <racunDuznika>181818181818181818</racunDuznika>
+        <modelZaduzenja>97</modelZaduzenja>
+        <pozivNaBrojZaduzenja>18181818181818181820</pozivNaBrojZaduzenja>
+        <racunPoverioca>181818181818181818</racunPoverioca>
+        <modelOdobrenja>97</modelOdobrenja>
+        <pozivNaBrojOdobrenja>18181818181818181820</pozivNaBrojOdobrenja>
+        <iznos>98.12</iznos>
+        <sifraValute>rsd</sifraValute>
+    </pojedinacnoPlacanjeMT102>
+    
+    <pojedinacnoPlacanjeMT102>
+        <idNalogaZaPlacanje>nalog broj 2</idNalogaZaPlacanje>
+        <duznik>duznik 2</duznik>
+        <svrhaPlacanja>svrha placanja 2</svrhaPlacanja>
+        <primalac>primalac 2</primalac>
+        <datumNaloga>2008-02-02</datumNaloga>
+        <racunDuznika>181818181818181818</racunDuznika>
+        <modelZaduzenja>97</modelZaduzenja>
+        <pozivNaBrojZaduzenja>18181818181818181820</pozivNaBrojZaduzenja>
+        <racunPoverioca>181818181818181818</racunPoverioca>
+        <modelOdobrenja>97</modelOdobrenja>
+        <pozivNaBrojOdobrenja>18181818181818181820</pozivNaBrojOdobrenja>
+        <iznos>1236.35</iznos>
+        <sifraValute>rsd</sifraValute>
+    </pojedinacnoPlacanjeMT102>
+    
+    <pojedinacnoPlacanjeMT102>
+        <idNalogaZaPlacanje>nalog broj 3</idNalogaZaPlacanje>
+        <duznik>duznik 3</duznik>
+        <svrhaPlacanja>svrha placanja 3</svrhaPlacanja>
+        <primalac>primalac 3</primalac>
+        <datumNaloga>2008-02-02</datumNaloga>
+        <racunDuznika>181818181818181818</racunDuznika>
+        <modelZaduzenja>97</modelZaduzenja>
+        <pozivNaBrojZaduzenja>18181818181818181820</pozivNaBrojZaduzenja>
+        <racunPoverioca>181818181818181818</racunPoverioca>
+        <modelOdobrenja>97</modelOdobrenja>
+        <pozivNaBrojOdobrenja>18181818181818181820</pozivNaBrojOdobrenja>
+        <iznos>102.65</iznos>
+        <sifraValute>rsd</sifraValute>
+    </pojedinacnoPlacanjeMT102>
+    
+</mt102>

@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
-    <xs:element name="nalog">
+    
+    <xs:element name="mt103">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="idPoruke" type="Str50"/>
+                <xs:element name="swiftKodBankeDuznika" type="Str8"/>
+                <xs:element name="obracunskiRacunBankeDuznika" type="Str18"/>
+                <xs:element name="swiftKodBankePoverioca" type="Str8"/>
+                <xs:element name="obracunskiRacunBankePoverioca" type="Str18"/>
                 <xs:element name="duznik" type="Str255"/>
                 <xs:element name="svrhaPlacanja" type="Str255"/>
                 <xs:element name="primalac" type="Str255"/>
@@ -13,21 +17,15 @@
                 <xs:element name="racunDuznika" type="Str18"/>
                 <xs:element name="modelZaduzenja" type="Number2"/>
                 <xs:element name="pozivNaBrojZaduzenja" type="Str20"/>
-                <xs:element name="racunPrimaoca" type="Str18"/>
+                <xs:element name="racunPoverioca" type="Str18"/>
                 <xs:element name="modelOdobrenja" type="Number2"/>
                 <xs:element name="pozivNaBrojOdobrenja" type="Str20"/>
-                <xs:element name="iznos" type="Decimal5-2"/>
-                <xs:element name="oznakaValute" type="Str3"/>
-                <xs:element name="hitno" type="xs:boolean"/>
+                <xs:element name="iznos" type="Decimal15-2"/>
+                <xs:element name="sifraValute" type="Str3"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    
-    <xs:simpleType name="Number20">
-        <xs:restriction base="xs:integer">
-            <xs:pattern value="\d{20}"/>
-        </xs:restriction>
-    </xs:simpleType> 
+   
     
     <xs:simpleType name="Number2">
         <xs:restriction base="xs:integer">
@@ -35,9 +33,9 @@
         </xs:restriction>
     </xs:simpleType> 
     
-    <xs:simpleType name="Decimal5-2">
+    <xs:simpleType name="Decimal15-2">
         <xs:restriction base="xs:decimal">
-            <xs:totalDigits value="5"/>
+            <xs:totalDigits value="15"/>
             <xs:fractionDigits value="2"/>
         </xs:restriction>
     </xs:simpleType> 
@@ -62,14 +60,21 @@
             <xs:maxLength value="18"/>
         </xs:restriction>
     </xs:simpleType>
-   
+    
+    <xs:simpleType name="Str8">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="8"/>
+            <xs:maxLength value="8"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
     <xs:simpleType name="Str20">
         <xs:restriction base="xs:string">
             <xs:minLength value="20"/>
             <xs:maxLength value="20"/>
         </xs:restriction>
     </xs:simpleType>
-   
+    
     <xs:simpleType name="Str3">
         <xs:restriction base="xs:string">
             <xs:minLength value="3"/>

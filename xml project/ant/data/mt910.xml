@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mt910  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="mt910.xsd">
+    <idPoruke>id poruke 1</idPoruke>
+    <swiftKodBankeDuznika>88888888</swiftKodBankeDuznika> 
+    <obracunskiRacunBankeDuznika>20202020202020202020</obracunskiRacunBankeDuznika>
+    <idPorukeNaloga>idMT103</idPorukeNaloga> 
+    <datumValute>2002-09-24</datumValute>
+    <iznos>16.20</iznos>
+    <sifraValute>rsd</sifraValute>
+</mt910>
+
