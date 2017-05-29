@@ -11,6 +11,7 @@ import javax.xml.bind.ValidationEventLocator;
  */
 public class MyValidationEventHandler implements ValidationEventHandler {
 
+	@Override
 	public boolean handleEvent(ValidationEvent event) {
 
 		// Ako nije u pitanju WARNING metoda vraća false

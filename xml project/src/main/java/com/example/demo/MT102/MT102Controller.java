@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 
-import com.example.demo.model.DepositSlip;
 import com.example.demo.model.MyValidationEventHandler;
 
 

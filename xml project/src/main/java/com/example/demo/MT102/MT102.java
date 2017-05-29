@@ -18,9 +18,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-
 import com.example.demo.pojedinacnoPlacanjeMT102.PojedinacnoPlacanjeMT102;
-
 import com.example.demo.zaglavljeMT102.ZaglavljeMT102;
 
 import lombok.Data;

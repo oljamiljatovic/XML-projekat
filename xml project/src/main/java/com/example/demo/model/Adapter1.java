@@ -13,14 +13,16 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 public class Adapter1 extends XmlAdapter<String, Date>{
 
-    public Date unmarshal(String value) {
+    @Override
+	public Date unmarshal(String value) {
     	java.util.Date utilDate = MyDatatypeConverter.parseDate(value);
         java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
     	
         return sqlDate;
     }
 
-    public String marshal(Date value) {
+    @Override
+	public String marshal(Date value) {
         return (MyDatatypeConverter.printDate(value));
     }
 
