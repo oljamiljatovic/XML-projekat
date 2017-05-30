@@ -1,7 +1,6 @@
 package com.example.demo.zaglavljeMT102;
 
 import java.math.BigDecimal;
-
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -16,7 +15,6 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.example.demo.model.Adapter1;
-
 
 import lombok.Data;
 
