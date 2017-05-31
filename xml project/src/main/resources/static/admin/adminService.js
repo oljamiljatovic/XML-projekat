@@ -6,4 +6,12 @@ var url = "/admin/";
 	this.checkRights = function(){
 		return $http.get(url+"checkRights");
 	}	
+	
+	this.saveZaglavljeFakture = function(zaglavljeFakture){
+		return $http.post("/zaglavljeFakture",zaglavljeFakture);
+	}
+	
+	this.saveStavkaFakture = function(stavkaFakture,idZaglavlja){
+		return $http.post("/faktura/"+idZaglavlja,stavkaFakture);
+	}
 }]);

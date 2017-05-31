@@ -6,7 +6,9 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
@@ -19,6 +21,9 @@ import javax.xml.validation.SchemaFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +31,9 @@ import org.xml.sax.SAXException;
 
 import com.example.demo.model.MyValidationEventHandler;
 import com.example.demo.stavkaFakture.StavkaFakture;
+import com.example.demo.stavkaFakture.StavkaFaktureService;
 import com.example.demo.zaglavljeFakture.ZaglavljeFakture;
+import com.example.demo.zaglavljeFakture.ZaglavljeFaktureService;
 
 
 @RestController
@@ -34,10 +41,15 @@ import com.example.demo.zaglavljeFakture.ZaglavljeFakture;
 public class FakturaController {
 
 	private final FakturaService fakturaService;
+	private final ZaglavljeFaktureService zaglavljeFaktureService;
+	private final StavkaFaktureService stavkaFaktureService;
 	
 	@Autowired
-	public FakturaController(final FakturaService fakturaService){
+	public FakturaController(final FakturaService fakturaService,final ZaglavljeFaktureService zaglavljeFaktureService,final StavkaFaktureService stavkaFaktureService){
 		this.fakturaService = fakturaService;
+		this.zaglavljeFaktureService = zaglavljeFaktureService;
+		this.stavkaFaktureService = stavkaFaktureService;
+
 	}
 	
 	
@@ -163,6 +175,26 @@ public class FakturaController {
 		e.printStackTrace();
 	      }
 	}
+	@PostMapping(path = "/{idZaglavlja}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Faktura save(@PathVariable Long idZaglavlja,@RequestBody StavkaFakture stavkaFakture) {
+		System.out.println(idZaglavlja+"   "+stavkaFakture.getNazivRobeIliUsluge());
+		ZaglavljeFakture zaglavljeFakture = zaglavljeFaktureService.findOne(idZaglavlja);
+		StavkaFakture sacuvanaSF = stavkaFaktureService.save(stavkaFakture);
+		Faktura postojecaFaktura = fakturaService.findByZaglavljeFakture_Id(idZaglavlja);
+		if(postojecaFaktura==null){
+			Faktura faktura= new Faktura();
+			faktura.setZaglavljeFakture(zaglavljeFakture);
+			List<StavkaFakture> stavke = new ArrayList<StavkaFakture>();
+			stavke.add(stavkaFakture);
+			faktura.setStavkaFakture(stavke);
+			return fakturaService.save(faktura);
+		}else{
+			postojecaFaktura.getStavkaFakture().add(stavkaFakture);
+			return fakturaService.save(postojecaFaktura);
+		}
+	}
+	
 }
 
 

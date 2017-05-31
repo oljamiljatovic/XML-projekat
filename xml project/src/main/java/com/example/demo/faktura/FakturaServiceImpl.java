@@ -51,4 +51,9 @@ public class FakturaServiceImpl implements FakturaService {
 		return fakturaRepository.findOne(id);
 	}
 
+	@Override
+	public Faktura findByZaglavljeFakture_Id(Long id) {
+		return fakturaRepository.findByZaglavljeFakture_Id(id);
+	}
+
 }

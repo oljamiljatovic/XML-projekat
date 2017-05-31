@@ -10,4 +10,7 @@ public interface FakturaService {
 	public Faktura save(Faktura faktura);
 
 	public Faktura findOne(Long id);
+	
+	Faktura findByZaglavljeFakture_Id(Long id); 
+
 }

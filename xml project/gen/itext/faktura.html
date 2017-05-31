@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>Faktura</title>
+      <style type="text/css">
+         table {
+         font-family: serif;
+         border-collapse: collapse;
+         margin: 15px auto 15px auto;
+         width: 90%;
+         }
+         th, td {
+         text-align: left;
+         padding: 5px;
+         }
+         tr:nth-child(even){ background-color: #f2f2f2 }
+         th {
+         background-color: #4caf50;
+         font-family: sans-serif;
+         color: white;
+         }
+         tr { border: 1px solid darkgrey; }
+         tr:hover {
+         font-style: italic;
+         background-color: #cae8cb;
+         }
+         body { font-family: sans-serif; }
+         p { text-indent: 5px; }
+         .sup {
+         vertical-align: super;
+         padding-left: 4px;
+         font-size: small;
+         text-transform: lowercase;
+         }
+         
+         
+      </style>
+   </head>
+   <body>
+      <h1>Faktura</h1>
+      <h2>Zaglavlje fakture</h2>
+      <p>Naziv dobavljaca: Dobavljac 222</p>
+      <p>adresaDobavljaca: adresa dobavljaca 111</p>
+      <p>PIBDobavljaca: 14785236987</p>
+      <p>nazivKupca: Kupac 123</p>
+      <p>adresaKupca: adresa kupca 123</p>
+      <p>PIBKupca: 12365478965</p>
+      <p>brojRacuna: 147852</p>
+      <p>vrednostRobe: 12.24</p>
+      <p>vrednostUsluga: 12.24</p>
+      <p>ukupnoRobaIUsluge: 12.24</p>
+      <p>ukupanRabat: 12.24</p>
+      <p>ukupanPorez: 12.24</p>
+      <p>oznakaValute: rsd</p>
+      <p>iznosZaUplatu: 12.24</p>
+      <p>uplataNaRacun: 181818181818181818</p>
+      <p>datumValute: 2011-02-10</p>
+      <table style="border: 1px">
+         <caption>Stavka fakture</caption>
+         <tr bgcolor="#9acd32">
+            <th>redniBroj</th>
+            <th>nazivRobeIliUsluge</th>
+            <th>kolicina</th>
+            <th>jedinicaMere</th>
+            <th>jedinicnaCena</th>
+            <th>vrednost</th>
+            <th>procenatRabata</th>
+            <th>iznosRabata</th>
+            <th>umanjenoZaRabat</th>
+            <th>ukupanPorez</th>
+         </tr>
+         <tr>
+            <td>123</td>
+            <td>roba1</td>
+            <td>12.24</td>
+            <td>kg</td>
+            <td>12.24</td>
+            <td>12.24</td>
+            <td>12.24</td>
+            <td>12.24</td>
+            <td>12.24</td>
+            <td>12.24</td>
+         </tr>
+         <tr>
+            <td>258</td>
+            <td>roba2</td>
+            <td>13.24</td>
+            <td>kg</td>
+            <td>125.36</td>
+            <td>26.86</td>
+            <td>369.24</td>
+            <td>888.24</td>
+            <td>52.86</td>
+            <td>125.60</td>
+         </tr>
+      </table>
+   </body>
+</html>
