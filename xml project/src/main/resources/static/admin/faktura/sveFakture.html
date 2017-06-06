@@ -1,0 +1,26 @@
+<div class = "col-sm-4">
+
+<div ng-init="findAllFaktura()">
+<table class="table table-bordered" border="1">
+		<tbody>
+			<tr>
+				<th>Naziv dobavljaca</th>
+				<th>Naziv kupca</th>
+				<th>Datum racuna</th>
+				<th>&nbsp;</th>
+				
+			</tr>
+			<tr ng-repeat="faktura in allFaktura">
+				<td>{{faktura.zaglavljeFakture.nazivDobavljaca}}</td>
+				<td>{{faktura.zaglavljeFakture.nazivKupca}}</td>
+				<td>{{faktura.zaglavljeFakture.datumRacuna}}</td>
+				<td><button class = "btn btn-default" ui-sref =".searchCountry" ><span class = "glyphicon glyphicon-search"></span> Posalji</button> 
+				</td>			
+			</tr>
+		</tbody>
+	</table>
+
+
+</div>
+<div ui-view></div>
+</div>

@@ -20,13 +20,16 @@ import javax.xml.validation.SchemaFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.xml.sax.SAXException;
 
 import com.example.demo.model.MyValidationEventHandler;
@@ -182,17 +185,47 @@ public class FakturaController {
 		ZaglavljeFakture zaglavljeFakture = zaglavljeFaktureService.findOne(idZaglavlja);
 		StavkaFakture sacuvanaSF = stavkaFaktureService.save(stavkaFakture);
 		Faktura postojecaFaktura = fakturaService.findByZaglavljeFakture_Id(idZaglavlja);
+		Faktura savedFaktura = null;
 		if(postojecaFaktura==null){
 			Faktura faktura= new Faktura();
 			faktura.setZaglavljeFakture(zaglavljeFakture);
+			stavkaFakture.setRedniBroj(BigInteger.valueOf(1L));
 			List<StavkaFakture> stavke = new ArrayList<StavkaFakture>();
 			stavke.add(stavkaFakture);
 			faktura.setStavkaFakture(stavke);
-			return fakturaService.save(faktura);
+			savedFaktura=fakturaService.save(faktura);
 		}else{
+			BigInteger redniBroj = BigInteger.valueOf(postojecaFaktura.getStavkaFakture().size()+1);
+			System.out.println("redniBroj = "+redniBroj);
+			stavkaFakture.setRedniBroj(redniBroj);
 			postojecaFaktura.getStavkaFakture().add(stavkaFakture);
-			return fakturaService.save(postojecaFaktura);
+			savedFaktura= fakturaService.save(postojecaFaktura);
 		}
+		sendFaktura(savedFaktura);
+		return savedFaktura;
+	}
+	
+	@GetMapping(path = "/findAllFaktura")
+	@ResponseStatus(HttpStatus.CREATED)
+	public List<Faktura> findAllFaktura() {
+		return fakturaService.findAll();
+	}
+	
+	@RequestMapping(value = "/hello", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
+	public String sayHelloXML(){
+		String response = "<?xml version='1.0'?><hello>HELLO</hello>";
+		return response;
+	}
+	
+	//REST Client Code
+	private static void sendFaktura(Faktura faktura)
+	{
+	    final String uri = "http://localhost:8081/RESTApi/faktura";
+	    System.out.println("///sendFaktura");
+	    RestTemplate restTemplate = new RestTemplate();
+	    Faktura result = restTemplate.postForObject( uri,faktura, Faktura.class);
+	 
+	    System.out.println(result);
 	}
 	
 }
