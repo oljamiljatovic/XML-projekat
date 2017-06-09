@@ -56,4 +56,16 @@ public class FakturaServiceImpl implements FakturaService {
 		return fakturaRepository.findByZaglavljeFakture_Id(id);
 	}
 
+	@Override
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		fakturaRepository.delete(id);
+	}
+
+	@Override
+	public List<Faktura> findByZaglavljeFakture_PibKupca(String pibKupca) {
+		// TODO Auto-generated method stub
+		return fakturaRepository.findByZaglavljeFakture_PibKupca(pibKupca);
+	}
+
 }

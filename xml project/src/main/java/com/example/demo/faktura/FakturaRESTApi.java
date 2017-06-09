@@ -1,11 +1,5 @@
 package com.example.demo.faktura;
 
-import java.io.File;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,25 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/RESTApi")
 public class FakturaRESTApi {
 
-	@RequestMapping(value = "/faktura", method = RequestMethod.POST)
-	public ResponseEntity<Faktura> sendFaktura(@RequestBody Faktura faktura) 
+	@RequestMapping(value = "/FIRMA_A", method = RequestMethod.POST)
+	public ResponseEntity<Faktura> acceptFaktura1(@RequestBody Faktura faktura) 
 	{
-		System.out.println("RESTApi");
+		System.out.println("FIRMA_A");
 	    System.out.println(faktura);
-	    try {
-
-			File file = new File("DESAFaktura.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(Faktura.class);
-			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-			jaxbMarshaller.marshal(faktura, file);
-			jaxbMarshaller.marshal(faktura, System.out);
-
-		      } catch (JAXBException e) {
-			e.printStackTrace();
-		      }
+	    return new ResponseEntity<Faktura>(faktura, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/FIRMA_B", method = RequestMethod.POST)
+	public ResponseEntity<Faktura> acceptFaktura2(@RequestBody Faktura faktura) 
+	{
+		System.out.println("FIRMA_B");
+	    System.out.println(faktura);
 	    return new ResponseEntity<Faktura>(faktura, HttpStatus.OK);
 	}
 	

@@ -25,14 +25,9 @@ public class FirmaController {
 	@PostMapping("/findAllPoslovniSaradnici")
 	@ResponseStatus(HttpStatus.CREATED)
 	public List<Firma> findAllPoslovniSaradnici(@RequestBody Firma firma){
-		System.out.println(firma.getNaziv());
-		System.out.println(firma.getPoslovniSaradnici().size());
 		ArrayList<Firma> temp = new ArrayList<Firma>();
 		temp.add(firma);
 		List<Firma> ps = firmaService.findByPoslovniSaradnici(temp);
-		System.out.println(firma.getNaziv());
-		System.out.println(ps.size());
-		System.out.println(ps.get(0).getNaziv());
 		return ps;
 	}
 }

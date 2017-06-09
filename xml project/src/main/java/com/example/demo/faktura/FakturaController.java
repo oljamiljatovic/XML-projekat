@@ -1,15 +1,24 @@
 package com.example.demo.faktura;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -18,6 +27,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -32,6 +42,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.xml.sax.SAXException;
 
+import com.example.demo.bankAdmin.Admin;
+import com.example.demo.firma.Firma;
+import com.example.demo.firma.FirmaService;
 import com.example.demo.model.MyValidationEventHandler;
 import com.example.demo.stavkaFakture.StavkaFakture;
 import com.example.demo.stavkaFakture.StavkaFaktureService;
@@ -46,13 +59,17 @@ public class FakturaController {
 	private final FakturaService fakturaService;
 	private final ZaglavljeFaktureService zaglavljeFaktureService;
 	private final StavkaFaktureService stavkaFaktureService;
+	private final FirmaService firmaService;
+	private final HttpSession httpSession;
+
 	
 	@Autowired
-	public FakturaController(final FakturaService fakturaService,final ZaglavljeFaktureService zaglavljeFaktureService,final StavkaFaktureService stavkaFaktureService){
+	public FakturaController(final FakturaService fakturaService,final ZaglavljeFaktureService zaglavljeFaktureService,final StavkaFaktureService stavkaFaktureService,final FirmaService firmaService,final HttpSession httpSession){
 		this.fakturaService = fakturaService;
 		this.zaglavljeFaktureService = zaglavljeFaktureService;
 		this.stavkaFaktureService = stavkaFaktureService;
-
+		this.firmaService = firmaService;
+		this.httpSession  = httpSession;
 	}
 	
 	
@@ -183,6 +200,7 @@ public class FakturaController {
 	public Faktura save(@PathVariable Long idZaglavlja,@RequestBody StavkaFakture stavkaFakture) {
 		System.out.println(idZaglavlja+"   "+stavkaFakture.getNazivRobeIliUsluge());
 		ZaglavljeFakture zaglavljeFakture = zaglavljeFaktureService.findOne(idZaglavlja);
+		Firma kupac = firmaService.findByPoslovniSaradnici_PIB(zaglavljeFakture.getPibKupca());
 		StavkaFakture sacuvanaSF = stavkaFaktureService.save(stavkaFakture);
 		Faktura postojecaFaktura = fakturaService.findByZaglavljeFakture_Id(idZaglavlja);
 		Faktura savedFaktura = null;
@@ -194,21 +212,27 @@ public class FakturaController {
 			stavke.add(stavkaFakture);
 			faktura.setStavkaFakture(stavke);
 			savedFaktura=fakturaService.save(faktura);
+			sendFaktura(faktura,kupac);
+			
 		}else{
 			BigInteger redniBroj = BigInteger.valueOf(postojecaFaktura.getStavkaFakture().size()+1);
 			System.out.println("redniBroj = "+redniBroj);
 			stavkaFakture.setRedniBroj(redniBroj);
 			postojecaFaktura.getStavkaFakture().add(stavkaFakture);
 			savedFaktura= fakturaService.save(postojecaFaktura);
+			sendFaktura(postojecaFaktura,kupac);
+			//fakturaService.delete(postojecaFaktura.getId());
 		}
-		sendFaktura(savedFaktura);
 		return savedFaktura;
 	}
 	
-	@GetMapping(path = "/findAllFaktura")
+	@GetMapping(path = "/findAllUlazneFakture")
 	@ResponseStatus(HttpStatus.CREATED)
-	public List<Faktura> findAllFaktura() {
-		return fakturaService.findAll();
+	public List<Faktura> findAllUlazneFakture() {
+		Firma firma = ((Admin) httpSession.getAttribute("user")).getFirma();
+		System.out.println("PIB kupca "+firma.getPIB());
+		List<Faktura> ulazneFakture = fakturaService.findByZaglavljeFakture_PibKupca(firma.getPIB());
+		return ulazneFakture;
 	}
 	
 	@RequestMapping(value = "/hello", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
@@ -218,14 +242,58 @@ public class FakturaController {
 	}
 	
 	//REST Client Code
-	private static void sendFaktura(Faktura faktura)
+	private static void sendFaktura(Faktura faktura,Firma kupac)
 	{
-	    final String uri = "http://localhost:8081/RESTApi/faktura";
+	    final String uri = kupac.getUri();
 	    System.out.println("///sendFaktura");
 	    RestTemplate restTemplate = new RestTemplate();
 	    Faktura result = restTemplate.postForObject( uri,faktura, Faktura.class);
 	 
 	    System.out.println(result);
+	}
+	
+	@PostMapping(path = "/createXML")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void createXML(@RequestBody Faktura faktura) {
+		System.out.println("createXML "+faktura.getZaglavljeFakture().getNazivKupca());
+		try {
+	
+			File file = new File("createFaktura.xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(Faktura.class);
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+	
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+	
+			jaxbMarshaller.marshal(faktura, file);
+			jaxbMarshaller.marshal(faktura, System.out);
+			
+			// dodaj liniju sa referencom na xsl u postojeci xml fajl
+			Path path = Paths.get("createFaktura.xml");
+			List<String> lines;
+			try {
+				lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+				String stylesheet = "<?xml-stylesheet type=\"text/xsl\" href=\"faktura.xsl\"?>";  
+				lines.add(1, stylesheet);
+				Files.write(path, lines, StandardCharsets.UTF_8);
+		        httpSession.setAttribute("file", file);
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	       // httpSession.setAttribute("file", file);
+
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+	}
+	@GetMapping("/fakturaXML")
+	@ResponseStatus(HttpStatus.OK)
+	public void createFakturaXML(HttpServletResponse response) throws IOException{
+		File file = (File)httpSession.getAttribute("file");
+		response.setContentType("application/xml");
+		InputStream inputStream = new FileInputStream(file);
+		IOUtils.copy(inputStream, response.getOutputStream());
 	}
 	
 }

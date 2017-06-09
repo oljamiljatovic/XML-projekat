@@ -1,6 +1,6 @@
 <div class = "col-sm-4">
 
-<div ng-init="findAllFaktura()">
+<div ng-init="findAllUlazneFakture()">
 <table class="table table-bordered" border="1">
 		<tbody>
 			<tr>
@@ -10,11 +10,12 @@
 				<th>&nbsp;</th>
 				
 			</tr>
-			<tr ng-repeat="faktura in allFaktura">
+			<tr ng-repeat="faktura in allUlazneFakture">
 				<td>{{faktura.zaglavljeFakture.nazivDobavljaca}}</td>
 				<td>{{faktura.zaglavljeFakture.nazivKupca}}</td>
 				<td>{{faktura.zaglavljeFakture.datumRacuna}}</td>
-				<td><button class = "btn btn-default" ui-sref =".searchCountry" ><span class = "glyphicon glyphicon-search"></span> Posalji</button> 
+				<td><button class = "btn btn-default" ng-click = "createXML(faktura)" ><span class = "glyphicon glyphicon-th"></span> Detalji</button> 
+				<td><button class = "btn btn-default" ng-click = "createPDF(faktura.id)" ><span class = "glyphicon glyphicon-tasks"></span> PDF</button> 
 				</td>			
 			</tr>
 		</tbody>

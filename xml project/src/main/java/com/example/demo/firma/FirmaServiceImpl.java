@@ -28,4 +28,10 @@ public class FirmaServiceImpl implements FirmaService{
 		// TODO Auto-generated method stub
 		return firmaRepository.findByPoslovniSaradnici(firma);
 	}
+
+	@Override
+	public Firma findByPoslovniSaradnici_PIB(String pib) {
+		// TODO Auto-generated method stub
+		return firmaRepository.findByPoslovniSaradnici_PIB(pib);
+	}
 }

@@ -15,11 +15,15 @@ var url = "/admin/";
 		return $http.post("/faktura/"+idZaglavlja,stavkaFakture);
 	}
 	
-	this.findAllFaktura = function(){
-		return $http.get("/faktura/findAllFaktura");
+	this.findAllUlazneFakture = function(){
+		return $http.get("/faktura/findAllUlazneFakture");
 	}
 	
 	this.findAllPoslovniSaradnici = function(firma){
 		return $http.post("/firma/findAllPoslovniSaradnici",firma);
+	}
+	
+	this.createXML = function(faktura){
+		return $http.post("/faktura/createXML",faktura);
 	}
 }]);

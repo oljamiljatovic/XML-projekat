@@ -12,5 +12,11 @@ public interface FakturaService {
 	public Faktura findOne(Long id);
 	
 	Faktura findByZaglavljeFakture_Id(Long id); 
+	
+	public void delete(Long id);
+	
+	List<Faktura> findByZaglavljeFakture_PibKupca(String pibKupca); 
+
+
 
 }

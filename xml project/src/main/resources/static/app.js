@@ -49,8 +49,8 @@ angular.module('routerApp', ['ui.router',
         	url : '/unosStavkeFakture',
           	templateUrl : 'admin/faktura/unosStavkeFakture.html'
         })
-        .state('admin.sveFakture', {
-        	url : '/sveFakture',
-          	templateUrl : 'admin/faktura/sveFakture.html'
+        .state('admin.sveUlazneFakture', {
+        	url : '/sveUlazneFakture',
+          	templateUrl : 'admin/faktura/sveUlazneFakture.html'
         })
 });

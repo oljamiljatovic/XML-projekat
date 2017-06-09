@@ -6,5 +6,8 @@ public interface FirmaService {
 	public Firma findOne(Long id);
 	
 	List<Firma> findByPoslovniSaradnici(List<Firma> firma);
+	
+	Firma findByPoslovniSaradnici_PIB(String pib);
+
 
 }
