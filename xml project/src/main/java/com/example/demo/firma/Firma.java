@@ -44,6 +44,10 @@ public class Firma {
 	@Column
 	private String uri;
 	
+	@NotBlank
+	@Column
+	private String brojRacuna;
+	
 	@JsonIgnore
 	@OneToMany
 	@JoinTable(name = "POSLOVNI_SARADNICI", joinColumns = @JoinColumn(name = "FIRMA1_ID"), inverseJoinColumns = @JoinColumn(name = "FIRMA2_ID"))

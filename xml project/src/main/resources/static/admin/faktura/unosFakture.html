@@ -72,11 +72,13 @@
 				<th>Naziv</th>
 				<th>Adresa</th>
 				<th>PIB</th>
+				<th>Broj racuna</th>
 			</tr>
-			<tr ng-repeat="ps in allPoslovniSaradnici" id="{{ps.id}}" ng-click="setSelected(ps.id,ps.naziv,ps.adresa,ps.pib);">
+			<tr ng-repeat="ps in allPoslovniSaradnici" id="{{ps.id}}" ng-click="setSelected(ps.id,ps.naziv,ps.adresa,ps.pib,ps.brojRacuna);">
 				<td>{{ps.naziv}}</td>
 				<td>{{ps.adresa}}</td>
 				<td>{{ps.pib}}</td>
+				<td>{{ps.brojRacuna}}</td>
 				</tr>
 		</tbody>
 		</table>

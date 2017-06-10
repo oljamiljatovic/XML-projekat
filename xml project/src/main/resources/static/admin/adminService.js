@@ -30,4 +30,8 @@ var url = "/admin/";
 	this.createPDF = function(faktura){
 		return $http.post("/faktura/createPDF",faktura);
 	}
+	
+	this.sendNalog = function(faktura){
+		return $http.post("/nalog/sendNalog",faktura);
+	}
 }]);

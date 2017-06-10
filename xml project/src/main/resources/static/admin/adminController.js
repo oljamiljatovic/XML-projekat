@@ -71,12 +71,14 @@ app.controller('adminController', ['$scope','adminService', '$location','$state'
 			);	
 		}
 		
-		$scope.setSelected = function(code,naziv,adresa,pib) {
+		$scope.setSelected = function(code,naziv,adresa,pib,racun) {
 	        $scope.selected = code;
 	        markRow(code);
 	        $scope.zaglavljeFakture.nazivKupca = naziv;
 	        $scope.zaglavljeFakture.adresaKupca = adresa;
 	        $scope.zaglavljeFakture.pibKupca = pib;
+	        $scope.zaglavljeFakture.uplataNaRacun = racun;
+
 
 	    };	
 	    function markRow(code) {   
@@ -98,15 +100,13 @@ app.controller('adminController', ['$scope','adminService', '$location','$state'
 			})
 		}	
 	    
-	    $scope.createHTML = function (faktura) {
-			adminService.createHTML(faktura).then(function(response){
-				alert("Uspjelo jeee")
-				window.location.href = "http://localhost:8080/faktura/fakturaHTML";
+	    $scope.sendNalog = function (faktura) {
+			adminService.sendNalog(faktura).then(function(response){
+				alert("Kreiran nalog za slanje banci!");
             },
 			function(response){
-				alert("Greska kod createXML");
+				alert("Greska kod sendNalog");
 			})
-
 		}
 	}
 	

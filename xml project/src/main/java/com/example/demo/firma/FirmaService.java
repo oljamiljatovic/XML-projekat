@@ -8,6 +8,9 @@ public interface FirmaService {
 	List<Firma> findByPoslovniSaradnici(List<Firma> firma);
 	
 	Firma findByPoslovniSaradnici_PIB(String pib);
+	
+	Firma findByPIB(String pib);
+
 
 
 }
