@@ -4,18 +4,25 @@
 <table class="table table-bordered" border="1">
 		<tbody>
 			<tr>
-				<th>Naziv dobavljaca</th>
 				<th>Naziv kupca</th>
+				<th>Adresa kupca</th>
+				<th>PIB kupca</th>
+				<th>Iznos za uplatu</th>
 				<th>Datum racuna</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
 				<th>&nbsp;</th>
 				
 			</tr>
 			<tr ng-repeat="faktura in allUlazneFakture">
-				<td>{{faktura.zaglavljeFakture.nazivDobavljaca}}</td>
 				<td>{{faktura.zaglavljeFakture.nazivKupca}}</td>
+				<td>{{faktura.zaglavljeFakture.adresaKupca}}</td>
+				<td>{{faktura.zaglavljeFakture.pibKupca}}</td>
+				<td>{{faktura.zaglavljeFakture.iznosZaUplatu}}</td>
 				<td>{{faktura.zaglavljeFakture.datumRacuna}}</td>
-				<td><button class = "btn btn-default" ng-click = "createXML(faktura)" ><span class = "glyphicon glyphicon-th"></span> Detalji</button> 
-				<td><button class = "btn btn-default" ng-click = "createPDF(faktura.id)" ><span class = "glyphicon glyphicon-tasks"></span> PDF</button> 
+				<td><button class = "btn btn-default" ng-click = "createHTML(faktura)" ><span class = "glyphicon glyphicon-th"></span> Detalji</button> 
+				<td><button class = "btn btn-default" ng-click = "createPDF(faktura)" ><span class = "glyphicon glyphicon-tasks"></span> PDF</button> 
+				<td><button class = "btn btn-default" ng-click = "" ><span class = "glyphicon glyphicon-envelope"></span> Posalji nalog banci</button> 
 				</td>			
 			</tr>
 		</tbody>

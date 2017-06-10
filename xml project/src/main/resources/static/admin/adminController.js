@@ -88,26 +88,20 @@ app.controller('adminController', ['$scope','adminService', '$location','$state'
 		     element.setAttribute("class", "selectedRow");
 		}
 	    
-	    $scope.createPDF = function (idFakture) {
-			if($scope.chossenDatesForPdf.fromDate == null || $scope.chossenDatesForPdf.toDate == null){
-				alert("You must choose date!");
-			}else{
-				var billId = $scope.billID;
-				var fromDate = $scope.chossenDatesForPdf.fromDate;
-				var toDate = $scope.chossenDatesForPdf.toDate;
-				bankerService.makePdf(billId , fromDate, toDate).then(function(response){
-					window.location.href = "/banker/makePDFForClient";
-	            },
-				function(response){
-					alert("NOT FOUND");
-				})
-			}
+	    $scope.createPDF = function (faktura) {
+	    	adminService.createPDF(faktura).then(function(response){
+				alert("Uspjelo jeee")
+				window.location.href = "http://localhost:8080/faktura/fakturaPDF";
+            },
+			function(response){
+				alert("Greska kod createPDF");
+			})
 		}	
 	    
-	    $scope.createXML = function (faktura) {
-			adminService.createXML(faktura).then(function(response){
+	    $scope.createHTML = function (faktura) {
+			adminService.createHTML(faktura).then(function(response){
 				alert("Uspjelo jeee")
-				window.location.href = "http://localhost:8080/faktura/fakturaXML";
+				window.location.href = "http://localhost:8080/faktura/fakturaHTML";
             },
 			function(response){
 				alert("Greska kod createXML");

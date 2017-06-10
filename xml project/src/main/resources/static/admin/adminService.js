@@ -23,7 +23,11 @@ var url = "/admin/";
 		return $http.post("/firma/findAllPoslovniSaradnici",firma);
 	}
 	
-	this.createXML = function(faktura){
-		return $http.post("/faktura/createXML",faktura);
+	this.createHTML = function(faktura){
+		return $http.post("/faktura/createHTML",faktura);
+	}
+	
+	this.createPDF = function(faktura){
+		return $http.post("/faktura/createPDF",faktura);
 	}
 }]);

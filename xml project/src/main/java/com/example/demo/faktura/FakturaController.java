@@ -2,6 +2,7 @@ package com.example.demo.faktura;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
@@ -46,10 +47,12 @@ import com.example.demo.bankAdmin.Admin;
 import com.example.demo.firma.Firma;
 import com.example.demo.firma.FirmaService;
 import com.example.demo.model.MyValidationEventHandler;
+import com.example.demo.pdfTransformer.PDFTransformer;
 import com.example.demo.stavkaFakture.StavkaFakture;
 import com.example.demo.stavkaFakture.StavkaFaktureService;
 import com.example.demo.zaglavljeFakture.ZaglavljeFakture;
 import com.example.demo.zaglavljeFakture.ZaglavljeFaktureService;
+import com.itextpdf.text.DocumentException;
 
 
 @RestController
@@ -252,12 +255,46 @@ public class FakturaController {
 	    System.out.println(result);
 	}
 	
-	@PostMapping(path = "/createXML")
+	@PostMapping(path = "/createHTML")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void createXML(@RequestBody Faktura faktura) {
+	public void createHTML(@RequestBody Faktura faktura) throws IOException, DocumentException {
 		System.out.println("createXML "+faktura.getZaglavljeFakture().getNazivKupca());
-		try {
+		File file = createFakturaXML(faktura);	
+		final String INPUT_FILE = file.getPath();
+		System.out.println(INPUT_FILE);
+		final String XSL_FILE = "faktura.xsl";
+		final String HTML_FILE = "gen/itext/faktura.html";
+		final String OUTPUT_FILE = "gen/itext/faktura.pdf";
+    	// Creates parent directory if necessary
+    	File pdfFile = new File(OUTPUT_FILE);
+    	
+		if (!pdfFile.getParentFile().exists()) {
+			System.out.println("[INFO] A new directory is created: " + pdfFile.getParentFile().getAbsolutePath() + ".");
+			pdfFile.getParentFile().mkdir();
+		}
+    	
+		PDFTransformer pdfTransformer = new PDFTransformer();
+		pdfTransformer.generateHTML(INPUT_FILE, XSL_FILE,HTML_FILE);
+		
+		File html = new File(HTML_FILE);
+        httpSession.setAttribute("html", html);
+		System.out.println("[INFO] File \"" + HTML_FILE + "\" generated successfully.");
+		System.out.println("[INFO] End.");
+
+	}
 	
+	@GetMapping("/fakturaHTML")
+	@ResponseStatus(HttpStatus.OK)
+	public void createHTML(HttpServletResponse response) throws IOException{
+		File file = (File)httpSession.getAttribute("html");
+		response.setContentType("text/html");
+		InputStream inputStream = new FileInputStream(file);
+		IOUtils.copy(inputStream, response.getOutputStream());
+	}
+	
+	public File createFakturaXML(Faktura faktura){
+		try {
+			
 			File file = new File("createFaktura.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(Faktura.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -275,24 +312,54 @@ public class FakturaController {
 				String stylesheet = "<?xml-stylesheet type=\"text/xsl\" href=\"faktura.xsl\"?>";  
 				lines.add(1, stylesheet);
 				Files.write(path, lines, StandardCharsets.UTF_8);
-		        httpSession.setAttribute("file", file);
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	       // httpSession.setAttribute("file", file);
+			return file;
 
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
-	@GetMapping("/fakturaXML")
+	
+	@PostMapping(path = "/createPDF")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void createPDF(@RequestBody Faktura faktura) throws IOException, DocumentException {
+		System.out.println("createPDF "+faktura.getZaglavljeFakture().getNazivKupca());
+		File file = createFakturaXML(faktura);
+		final String INPUT_FILE = file.getPath();
+		System.out.println(INPUT_FILE);
+		final String XSL_FILE = "faktura.xsl";
+		final String HTML_FILE = "gen/itext/faktura.html";
+		final String OUTPUT_FILE = "gen/itext/faktura.pdf";
+    	// Creates parent directory if necessary
+    	File pdfFile = new File(OUTPUT_FILE);
+    	
+		if (!pdfFile.getParentFile().exists()) {
+			System.out.println("[INFO] A new directory is created: " + pdfFile.getParentFile().getAbsolutePath() + ".");
+			pdfFile.getParentFile().mkdir();
+		}
+    	
+		PDFTransformer pdfTransformer = new PDFTransformer();
+		
+		pdfTransformer.generateHTML(INPUT_FILE, XSL_FILE,HTML_FILE);
+		pdfTransformer.generatePDF(OUTPUT_FILE,HTML_FILE);
+		
+		File pdf = new File(OUTPUT_FILE);
+        httpSession.setAttribute("pdf", pdf);
+		System.out.println("[INFO] File \"" + OUTPUT_FILE + "\" generated successfully.");
+		System.out.println("[INFO] End.");
+	}
+	
+	@GetMapping("/fakturaPDF")
 	@ResponseStatus(HttpStatus.OK)
-	public void createFakturaXML(HttpServletResponse response) throws IOException{
-		File file = (File)httpSession.getAttribute("file");
-		response.setContentType("application/xml");
-		InputStream inputStream = new FileInputStream(file);
+	public void createFakturaPDF(HttpServletResponse response) throws IOException{
+		File pdf = (File)httpSession.getAttribute("pdf");
+		response.setContentType("application/pdf");
+		InputStream inputStream = new FileInputStream(pdf);
 		IOUtils.copy(inputStream, response.getOutputStream());
 	}
 	

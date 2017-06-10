@@ -38,13 +38,7 @@ public class PDFTransformer {
 	
 	private static TransformerFactory transformerFactory;
 	
-	public static final String INPUT_FILE = "generisanaFaktura.xml";
-	
-	public static final String XSL_FILE = "faktura.xsl";
-	
-	public static final String HTML_FILE = "gen/itext/faktura.html";
-	
-	public static final String OUTPUT_FILE = "gen/itext/faktura.pdf";
+
 
 	static {
 
@@ -65,7 +59,7 @@ public class PDFTransformer {
      * @throws IOException
      * @throws DocumentException
      */
-    public void generatePDF(String filePath) throws IOException, DocumentException {
+    public void generatePDF(String filePath, String HTML_FILE) throws IOException, DocumentException {
         
     	// Step 1
     	Document document = new Document();
@@ -105,7 +99,7 @@ public class PDFTransformer {
 		return document;
 	}
     
-    public void generateHTML(String xmlPath, String xslPath) throws FileNotFoundException {
+    public void generateHTML(String xmlPath, String xslPath, String HTML_FILE) throws FileNotFoundException {
     	
 		try {
 
@@ -133,7 +127,7 @@ public class PDFTransformer {
     
     }
     
-    public static void main(String[] args) throws IOException, DocumentException {
+    /*public static void main(String[] args) throws IOException, DocumentException {
 
     	System.out.println("[INFO] " + PDFTransformer.class.getSimpleName());
     	
@@ -152,6 +146,6 @@ public class PDFTransformer {
 		
 		System.out.println("[INFO] File \"" + OUTPUT_FILE + "\" generated successfully.");
 		System.out.println("[INFO] End.");
-    }
+    }*/
     
 }
