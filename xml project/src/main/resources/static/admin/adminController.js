@@ -35,12 +35,20 @@ app.controller('adminController', ['$scope','adminService', '$location','$state'
 				function(response){
 					var r = confirm("Dodaj jos jednu stavku?");
 					if (r == true) {
-						$state.go("admin.unosStavkeFakture", {});
 						$scope.stavkaFakture=null;
+						$state.go("admin.unosStavkeFakture", {});
 					} else {
-						$state.go("admin.home", {});
 						$scope.sacuvanoZaglavlje=null;
 						$scope.stavkaFakture=null;
+						$state.go("admin.home", {});
+						alert(response.data)
+						adminService.sendFaktura(response.data).then(
+								function(response){
+									alert("Poslata je faktura! "+response.data)
+								}, function (response){
+									alert("Greska");
+								}
+							);
 					}
 
 				}, function (response){
@@ -94,6 +102,16 @@ app.controller('adminController', ['$scope','adminService', '$location','$state'
 	    	adminService.createPDF(faktura).then(function(response){
 				alert("Uspjelo jeee")
 				window.location.href = "http://localhost:8080/faktura/fakturaPDF";
+            },
+			function(response){
+				alert("Greska kod createPDF");
+			})
+		}	
+	    
+	    $scope.createHTML = function (faktura) {
+	    	adminService.createHTML(faktura).then(function(response){
+				alert("Uspjelo jeee")
+				window.location.href = "http://localhost:8080/faktura/fakturaHTML";
             },
 			function(response){
 				alert("Greska kod createPDF");

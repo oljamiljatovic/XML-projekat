@@ -198,12 +198,21 @@ public class FakturaController {
 		e.printStackTrace();
 	      }
 	}
+	
+	@GetMapping(path = "/findAllUlazneFakture")
+	@ResponseStatus(HttpStatus.CREATED)
+	public List<Faktura> findAllUlazneFakture() {
+		Firma firma = ((Admin) httpSession.getAttribute("user")).getFirma();
+		System.out.println("PIB kupca "+firma.getPIB());
+		List<Faktura> ulazneFakture = fakturaService.findByZaglavljeFakture_PibKupca(firma.getPIB());
+		return ulazneFakture;
+	}
+	
 	@PostMapping(path = "/{idZaglavlja}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Faktura save(@PathVariable Long idZaglavlja,@RequestBody StavkaFakture stavkaFakture) {
 		System.out.println(idZaglavlja+"   "+stavkaFakture.getNazivRobeIliUsluge());
 		ZaglavljeFakture zaglavljeFakture = zaglavljeFaktureService.findOne(idZaglavlja);
-		Firma kupac = firmaService.findByPoslovniSaradnici_PIB(zaglavljeFakture.getPibKupca());
 		StavkaFakture sacuvanaSF = stavkaFaktureService.save(stavkaFakture);
 		Faktura postojecaFaktura = fakturaService.findByZaglavljeFakture_Id(idZaglavlja);
 		Faktura savedFaktura = null;
@@ -215,7 +224,7 @@ public class FakturaController {
 			stavke.add(stavkaFakture);
 			faktura.setStavkaFakture(stavke);
 			savedFaktura=fakturaService.save(faktura);
-			sendFaktura(faktura,kupac);
+			//sendFaktura(faktura,kupac);
 			
 		}else{
 			BigInteger redniBroj = BigInteger.valueOf(postojecaFaktura.getStavkaFakture().size()+1);
@@ -223,36 +232,32 @@ public class FakturaController {
 			stavkaFakture.setRedniBroj(redniBroj);
 			postojecaFaktura.getStavkaFakture().add(stavkaFakture);
 			savedFaktura= fakturaService.save(postojecaFaktura);
-			sendFaktura(postojecaFaktura,kupac);
+			//sendFaktura(postojecaFaktura,kupac);
 			//fakturaService.delete(postojecaFaktura.getId());
 		}
 		return savedFaktura;
 	}
 	
-	@GetMapping(path = "/findAllUlazneFakture")
+	@PostMapping(path = "/sendFaktura")
 	@ResponseStatus(HttpStatus.CREATED)
-	public List<Faktura> findAllUlazneFakture() {
-		Firma firma = ((Admin) httpSession.getAttribute("user")).getFirma();
-		System.out.println("PIB kupca "+firma.getPIB());
-		List<Faktura> ulazneFakture = fakturaService.findByZaglavljeFakture_PibKupca(firma.getPIB());
-		return ulazneFakture;
+	public Faktura save(@RequestBody Faktura faktura) {
+		System.out.println("sendFaktura dobavljac"+faktura.getZaglavljeFakture().getNazivDobavljaca());
+		System.out.println(faktura.getId());
+		Firma kupac = firmaService.findByPoslovniSaradnici_PIB(faktura.getZaglavljeFakture().getPibKupca());
+		fakturaService.delete(faktura.getId());
+		Faktura result = sendFaktura(faktura,kupac);
+		return result;
 	}
-	
-	@RequestMapping(value = "/hello", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
-	public String sayHelloXML(){
-		String response = "<?xml version='1.0'?><hello>HELLO</hello>";
-		return response;
-	}
-	
+
 	//REST Client Code
-	private static void sendFaktura(Faktura faktura,Firma kupac)
+	private static Faktura sendFaktura(Faktura faktura,Firma kupac)
 	{
 	    final String uri = kupac.getUri();
 	    System.out.println("///sendFaktura");
 	    RestTemplate restTemplate = new RestTemplate();
 	    Faktura result = restTemplate.postForObject( uri,faktura, Faktura.class);
-	 
 	    System.out.println(result);
+	    return result;
 	}
 	
 	@PostMapping(path = "/createHTML")

@@ -2,34 +2,45 @@
 <?xml-stylesheet type="text/xsl" href="faktura.xsl"?>
 <faktura>
     <zaglavljeFakture>
-        <nazivDobavljaca>sda</nazivDobavljaca>
-        <adresaDobavljaca>dsa</adresaDobavljaca>
-        <PIBDobavljaca>2121</PIBDobavljaca>
+        <nazivDobavljaca>dfs</nazivDobavljaca>
+        <adresaDobavljaca>sdf</adresaDobavljaca>
+        <PIBDobavljaca>21312</PIBDobavljaca>
         <nazivKupca>FIRMA_B</nazivKupca>
         <adresaKupca>Dositejeva 12</adresaKupca>
         <PIBKupca>22222222222</PIBKupca>
-        <brojRacuna>21321</brojRacuna>
+        <brojRacuna>123312</brojRacuna>
         <datumRacuna>2017-06-11</datumRacuna>
-        <vrednostRobe>12</vrednostRobe>
-        <vrednostUsluga>21</vrednostUsluga>
-        <ukupnoRobaIUsluge>213</ukupnoRobaIUsluge>
-        <ukupanRabat>312</ukupanRabat>
-        <ukupanPorez>321</ukupanPorez>
-        <oznakaValute>das</oznakaValute>
+        <vrednostRobe>123</vrednostRobe>
+        <vrednostUsluga>123</vrednostUsluga>
+        <ukupnoRobaIUsluge>321</ukupnoRobaIUsluge>
+        <ukupanRabat>123</ukupanRabat>
+        <ukupanPorez>123</ukupanPorez>
+        <oznakaValute>qwewe</oznakaValute>
         <iznosZaUplatu>213</iznosZaUplatu>
-        <uplataNaRacun>123</uplataNaRacun>
-        <datumValute>2017-06-10</datumValute>
+        <uplataNaRacun>555222222222222222</uplataNaRacun>
+        <datumValute>2017-06-22</datumValute>
     </zaglavljeFakture>
     <stavkaFakture>
         <redniBroj>1</redniBroj>
-        <nazivRobeIliUsluge>ads</nazivRobeIliUsluge>
-        <kolicina>213</kolicina>
-        <jedinicaMere>213</jedinicaMere>
-        <jedinicnaCena>213</jedinicnaCena>
-        <vrednost>123</vrednost>
-        <procenatRabata>123</procenatRabata>
-        <iznosRabata>231</iznosRabata>
-        <umanjenoZaRabat>213</umanjenoZaRabat>
+        <nazivRobeIliUsluge>assa</nazivRobeIliUsluge>
+        <kolicina>321</kolicina>
+        <jedinicaMere>123</jedinicaMere>
+        <jedinicnaCena>132</jedinicnaCena>
+        <vrednost>132</vrednost>
+        <procenatRabata>312</procenatRabata>
+        <iznosRabata>321</iznosRabata>
+        <umanjenoZaRabat>123</umanjenoZaRabat>
         <ukupanPorez>213</ukupanPorez>
+    </stavkaFakture>
+    <stavkaFakture>
+        <redniBroj>2</redniBroj>
+        <nazivRobeIliUsluge>sad</nazivRobeIliUsluge>
+        <kolicina>213</kolicina>
+        <jedinicaMere>123</jedinicaMere>
+        <jedinicnaCena>123</jedinicnaCena>
+        <vrednost>234</vrednost>
+        <procenatRabata>234</procenatRabata>
+        <umanjenoZaRabat>234</umanjenoZaRabat>
+        <ukupanPorez>234</ukupanPorez>
     </stavkaFakture>
 </faktura>

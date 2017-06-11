@@ -128,6 +128,7 @@ public class NalogController {
 	      }
 	}
 	///ovako kreirani nalog bi trebao da se posalje banci preko SOAP-a
+	//ili kao xml nalog ili obicni objekat
 	@PostMapping(path = "/sendNalog")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Nalog sendNalog(@RequestBody Faktura faktura){

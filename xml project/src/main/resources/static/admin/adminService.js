@@ -34,4 +34,8 @@ var url = "/admin/";
 	this.sendNalog = function(faktura){
 		return $http.post("/nalog/sendNalog",faktura);
 	}
+	
+	this.sendFaktura = function(faktura){
+		return $http.post("/faktura/sendFaktura",faktura);
+	}
 }]);
